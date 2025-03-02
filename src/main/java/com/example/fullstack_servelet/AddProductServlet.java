@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.Collection;
@@ -28,7 +29,6 @@ import java.util.List;
 public class AddProductServlet  extends HttpServlet {
     private DBConnect dbConnect = new DBConnect();
     private FileStoregate storegate = new FileStoregate();
-    private static final String UPLOAD_LOCATION_PROPERTY_KEY="C:\\Users\\PC\\Documents\\demo\\Fullstack_Servelet\\target\\Fullstack_Servelet-1.0-SNAPSHOT\\image";
     private String uploadsDirName;
 
 
@@ -42,6 +42,9 @@ public class AddProductServlet  extends HttpServlet {
         String name = req.getParameter("name");
         int soluong = Integer.parseInt(req.getParameter("soluong"));
         String file_name = "";
+        String path = getServletContext().getRealPath("/");
+
+
 
         try {
             Collection<Part> parts = req.getParts();
@@ -49,7 +52,7 @@ public class AddProductServlet  extends HttpServlet {
                if (part.getName().equals("file")){
                    file_name = System.currentTimeMillis()+ "_"
                            + getFilename(part);
-                   File save = new File(UPLOAD_LOCATION_PROPERTY_KEY, file_name);
+                   File save = new File(path+"image", file_name);
 
                    final String absolutePath = save.getAbsolutePath();
                    part.write(absolutePath);
@@ -63,15 +66,6 @@ public class AddProductServlet  extends HttpServlet {
                 e1.printStackTrace();
             }
         }
-
-
-
-
-
-        //lưu vào 1 folder nào đó
-        //lưu tên ảnh vào csdl
-        // storegate.saveFile(filePart);
-
 
         Product product = new Product(name, soluong,file_name);
         Connection connection = dbConnect.openConnect();

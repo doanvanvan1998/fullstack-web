@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class FileStoregate {
-
     public void saveFile(Part filePart){
         String directoryPath = "C:\\Users\\PC\\Desktop\\imges\\"; // Change to your desired directory
         InputStream inputStream = null;
@@ -26,6 +25,9 @@ public class FileStoregate {
         }catch (Exception e){
 
         }
+
+
+
 
 
 
