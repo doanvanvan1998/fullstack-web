@@ -50,12 +50,15 @@
   <h1>thêm mới sản phẩm</h1>
 
     <div class="container">
-      <form action="add_product" method="post" style="width: 500px;">
+      <form action="add_product" method="post" style="width: 500px;" enctype="multipart/form-data">
         <label >Tên sản phẩm</label>
         <input type="text" id="fname" name="name" >
 
         <label >Số lượng</label>
         <input type="text" id="lname" name="soluong">
+
+        <label >Hình ảnh</label>
+        <input type="file" id="file" name="file">
         <input type="submit" value="Submit">
       </form>
     </div>

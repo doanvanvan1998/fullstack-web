@@ -33,6 +33,7 @@ public class ProductServlet extends HttpServlet {
                 product.setId(resultSet.getInt("id"));
                 product.setName(resultSet.getString("name"));
                 product.setSoluong(resultSet.getInt("soluong"));
+                product.setFile_name(resultSet.getString("file_name"));
                 list.add(product);
             }
 
